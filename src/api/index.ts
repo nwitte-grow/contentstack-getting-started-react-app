@@ -46,6 +46,7 @@ export const getEntryByUrl = ({
     if (referenceFieldPath) blogQuery.includeReference(referenceFieldPath);
     blogQuery.toJSON();
     const data = blogQuery.where("url", `${entryUrl}`).find();
+
     data.then(
       (result) => {
         jsonRtePath &&
@@ -54,6 +55,8 @@ export const getEntryByUrl = ({
             paths: jsonRtePath,
             renderOption,
           });
+
+        console.log(JSON.stringify(result[0]));
         resolve(result[0]);
       },
       (error) => {
